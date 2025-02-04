@@ -16,18 +16,21 @@ volatile bool sequence_running = false;  // Bloqueia novas ativações até o fi
 // Callback do timer: Desliga o LED azul, mantém os outros dois acesos
 int64_t turn_off_blue(alarm_id_t id, void *user_data) {
     gpio_put(LED_BLUE, 0);
+    printf("LED azul desligado \n");
     return 0;
 }
 
 // Callback do timer: Desliga o LED vermelho, mantendo apenas o verde aceso
 int64_t turn_off_red(alarm_id_t id, void *user_data) {
     gpio_put(LED_RED, 0);
+    printf("LED vermelho desligado \n");
     return 0;
 }
 
 // Callback do timer: Desliga o LED verde e libera o botão para nova ativação
 int64_t turn_off_green(alarm_id_t id, void *user_data) {
     gpio_put(LED_GREEN, 0);
+    printf("LED verde desligado \n");
     sequence_running = false;  // Permite reiniciar a sequência
     return 0;
 }
@@ -42,7 +45,7 @@ void button_callback(uint gpio, uint32_t events) {
     gpio_put(LED_BLUE, 1);
     gpio_put(LED_RED, 1);
     gpio_put(LED_GREEN, 1);
-
+    printf("Botão acionado. LEDs LIGADOS! \n");
     // Configura temporizadores para desligar os LEDs progressivamente
     add_alarm_in_ms(DELAY_MS, turn_off_blue, NULL, false);
     add_alarm_in_ms(DELAY_MS * 2, turn_off_red, NULL, false);
