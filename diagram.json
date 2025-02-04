@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Atenilton Santos de Souza Júnior",
+  "author": "Marcus Vinicius Rocha Sousa",
   "editor": "wokwi",
   "parts": [
     {
@@ -15,7 +15,7 @@
       "id": "led1",
       "top": -3.6,
       "left": -140.2,
-      "attrs": { "color": "red" }
+      "attrs": { "color": "blue" }
     },
     {
       "type": "wokwi-led",
@@ -29,7 +29,7 @@
       "id": "led3",
       "top": 34.8,
       "left": -140.2,
-      "attrs": { "color": "yellow" }
+      "attrs": { "color": "red" }
     },
     {
       "type": "wokwi-resistor",
