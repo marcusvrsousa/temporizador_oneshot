@@ -1,4 +1,4 @@
-# Temporizador de um Disparo (One Shot) 🚀
+# 🚀 Temporizador de um Disparo (One Shot) 
 Esta atividade consiste na implementação de um temporizador utilizando a função add_alarm_in_ms() do Pico SDK, para controlar o acionamento de LEDs a partir do clique em um botão (pushbutton). O sistema será desenvolvido para o microcontrolador Raspberry Pi Pico W e simulado na plataforma Wokwi.
 
 ## Ambiente de Desenvolvimento
@@ -11,7 +11,7 @@ Esta atividade consiste na implementação de um temporizador utilizando a funç
 
 - Simulador: Wokwi, integrado ao VS Code
 
-## Funcionalidades Implementadas 🔧
+## 🔧 Funcionalidades Implementadas 
 
 Acionamento por Botão: O sistema é ativado somente quando o usuário pressiona o botão (pushbutton).
 
@@ -33,7 +33,7 @@ Temporização com Callbacks: Cada mudança de estado dos LEDs é gerenciada por
 
 Simulação no Wokwi: O projeto pode ser testado no simulador Wokwi com LEDs RGB e um pushbutton.
 
-## Componentes Utilizados 📌
+## 📌 Componentes Utilizados 
 
 - Microcontrolador: Raspberry Pi Pico W
 
@@ -53,12 +53,11 @@ Simulação no Wokwi: O projeto pode ser testado no simulador Wokwi com LEDs RGB
 
 - Simulador: Wokwi (integrado ao VS Code)
 
-## Como Utilizar 🛠️
+## 🛠️ Como Utilizar 
 
 Compile e carregue o código no Raspberry Pi Pico W.
 
-
-## 6. Rodar no Simulador Wokwi 🔄
+## 🔄 Rodar no Simulador Wokwi 
 
 1️⃣ Acesse wokwi.com
 2️⃣ Crie um novo projeto para Raspberry Pi Pico
