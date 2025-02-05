@@ -13,21 +13,21 @@
 
 volatile bool sequence_running = false;  // Bloqueia novas ativações até o final da sequência
 
-// Callback do timer: Desliga o LED azul, mantém os outros dois acesos
+// Callback do timer: Desliga o LED azul
 int64_t turn_off_blue(alarm_id_t id, void *user_data) {
     gpio_put(LED_BLUE, 0);
     printf("LED azul desligado \n");
     return 0;
 }
 
-// Callback do timer: Desliga o LED vermelho, mantendo apenas o verde aceso
+// Callback do timer: Desliga o LED vermelho
 int64_t turn_off_red(alarm_id_t id, void *user_data) {
     gpio_put(LED_RED, 0);
     printf("LED vermelho desligado \n");
     return 0;
 }
 
-// Callback do timer: Desliga o LED verde e libera o botão para nova ativação
+// Callback do timer: Desliga o LED verde e libera nova ativação
 int64_t turn_off_green(alarm_id_t id, void *user_data) {
     gpio_put(LED_GREEN, 0);
     printf("LED verde desligado \n");
@@ -46,10 +46,35 @@ void button_callback(uint gpio, uint32_t events) {
     gpio_put(LED_RED, 1);
     gpio_put(LED_GREEN, 1);
     printf("Botão acionado. LEDs LIGADOS! \n");
+
     // Configura temporizadores para desligar os LEDs progressivamente
     add_alarm_in_ms(DELAY_MS, turn_off_blue, NULL, false);
     add_alarm_in_ms(DELAY_MS * 2, turn_off_red, NULL, false);
     add_alarm_in_ms(DELAY_MS * 3, turn_off_green, NULL, false);
+}
+
+// Função de teste para verificar a sequência dos LEDs
+void run_test() {
+    printf("\n🚀 Iniciando Teste...\n");
+
+    // Simula o pressionamento do botão (ativa o callback manualmente)
+    printf("🟢 Simulando clique do botão...\n");
+    button_callback(BUTTON_PIN, 0);
+
+    // Aguarda a sequência para verificar os LEDs
+    sleep_ms(DELAY_MS + 100);
+    if (!gpio_get(LED_BLUE)) printf("✅ LED azul desligou corretamente.\n");
+    else printf("❌ ERRO: LED azul ainda está ligado!\n");
+
+    sleep_ms(DELAY_MS);
+    if (!gpio_get(LED_RED)) printf("✅ LED vermelho desligou corretamente.\n");
+    else printf("❌ ERRO: LED vermelho ainda está ligado!\n");
+
+    sleep_ms(DELAY_MS);
+    if (!gpio_get(LED_GREEN)) printf("✅ LED verde desligou corretamente.\n");
+    else printf("❌ ERRO: LED verde ainda está ligado!\n");
+
+    printf("✅ Teste concluído!\n");
 }
 
 int main() {
@@ -75,6 +100,9 @@ int main() {
 
     // Configura interrupção para detectar o clique do botão
     gpio_set_irq_enabled_with_callback(BUTTON_PIN, GPIO_IRQ_EDGE_FALL, true, &button_callback);
+
+    // Executa o teste antes de entrar no loop principal
+    run_test();
 
     while (1) {
         tight_loop_contents();  // Mantém o código rodando
