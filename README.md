@@ -62,7 +62,7 @@ Compile e carregue o código no Raspberry Pi Pico W.
 
 1️⃣ Acesse wokwi.com
 2️⃣ Crie um novo projeto para Raspberry Pi Pico
-3️⃣ Importe o arquivo diagram.json fornecido no repositório
+3️⃣ Importe o arquivo oneshot.c e o diagram.json fornecido no repositório
 4️⃣ Clique em "Start Simulation" para ver o código funcionando!
 5️⃣ Pressione o botão conectado ao microcontrolador para iniciar a sequência de iluminação dos LEDs.
 6️⃣ Observe os LEDs acenderem e apagarem conforme a temporização programada.
